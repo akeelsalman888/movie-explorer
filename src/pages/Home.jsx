@@ -35,7 +35,7 @@ export default function Home() {
             <div className="overlay">
                 <Container className="py-5">
                     {/* ✅ Removed mb-5 so no extra gap below heading */}
-                    <h1 className="text-center text-light fw-bold">🎬 Explore Movies</h1>
+                    <h1 className="text-center text-light fw-bold">🎬 Movies</h1>
                     <MovieList movies={movies} />
                 </Container>
             </div>

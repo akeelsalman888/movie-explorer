@@ -6,6 +6,7 @@ import Search from "./pages/Search.jsx";
 import Favorites from "./pages/Favorites.jsx";
 import Profile from "./pages/Profile.jsx";
 import MovieDetails from "./pages/MovieDetails.jsx";
+import EditMovie from "./pages/EditMovie.jsx"; // ✅ Import the new EditMovie page
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/edit/:id" element={<EditMovie />} /> {/* ✅ EditMovie route */}
           </Routes>
         </main>
 
