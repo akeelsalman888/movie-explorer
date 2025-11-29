@@ -1,0 +1,60 @@
+/* Reset default body spacing and account for fixed navbar */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-top: 56px; /* ✅ pushes content below fixed navbar */
+}
+
+/* Logo styling */
+.navbar-logo {
+  height: 60px;   /* ✅ bigger logo */
+  width: auto;    /* keeps aspect ratio */
+  margin-right: 12px;
+}
+
+/* Homepage background */
+.homepage {
+  background-image: url("https://wallpaperaccess.com/full/329583.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  flex: 1;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+/* Search & Profile backgrounds */
+.search-page,
+.profile-page,
+.details-page {
+  background: url("https://wallpaperaccess.com/full/329583.jpg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: calc(100vh - 56px); /* ✅ accounts for fixed navbar height */
+  margin: 0;
+  padding: 0;
+}
+
+.search-container,
+.profile-container,
+.details-container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Footer flush at bottom */
+footer {
+  margin-top: auto;
+  width: 100%;
+}
