@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png"; // ✅ your logo inside src/assets
+// FILE: src/components/Navbar.jsx
 import { Navbar as BootstrapNavbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -13,18 +13,13 @@ export default function Navbar() {
             }}
         >
             <Container>
-                {/* Brand with logo */}
+                {/* Brand */}
                 <BootstrapNavbar.Brand
                     as={NavLink}
                     to="/"
                     className="fw-bold text-light d-flex align-items-center"
                     style={{ letterSpacing: "1px" }}
                 >
-                    <img
-                        src={logo}
-                        alt="Movie Explorer Logo"
-                        className="navbar-logo"
-                    />
                     🎬 Movie Explorer
                 </BootstrapNavbar.Brand>
 
@@ -45,6 +40,7 @@ export default function Navbar() {
                         >
                             Home
                         </Nav.Link>
+
                         <Nav.Link
                             as={NavLink}
                             to="/search"
@@ -56,6 +52,7 @@ export default function Navbar() {
                         >
                             Search
                         </Nav.Link>
+
                         <Nav.Link
                             as={NavLink}
                             to="/favorites"
@@ -67,6 +64,7 @@ export default function Navbar() {
                         >
                             Favorites
                         </Nav.Link>
+
                         <Nav.Link
                             as={NavLink}
                             to="/profile"
@@ -77,6 +75,20 @@ export default function Navbar() {
                             })}
                         >
                             Profile
+                        </Nav.Link>
+
+                        {/* New Coming Soon link */}
+                        <Nav.Link
+                            as={NavLink}
+                            to="/coming-soon"
+                            className="text-light"
+                            style={({ isActive }) => ({
+                                fontWeight: isActive ? "700" : "400",
+                                borderBottom: isActive ? "2px solid #ffc107" : "none",
+                                fontStyle: "italic",
+                            })}
+                        >
+                            Coming Soon
                         </Nav.Link>
                     </Nav>
                 </BootstrapNavbar.Collapse>

@@ -1,11 +1,15 @@
+// FILE: src/main.jsx
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
+import "./index.css"; //styles
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+// Create React root and render the App
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <App />
+    <App /> {/* Main App component */}
   </React.StrictMode>
 );
