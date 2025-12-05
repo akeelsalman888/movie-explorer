@@ -75,7 +75,7 @@ The React app runs on http://localhost:5173
 
 
  **PROJECT STRUCTURE**
-'''
+```
  src/
 ├─ components/
 │  ├─ Navbar.jsx
@@ -100,7 +100,7 @@ The React app runs on http://localhost:5173
 ├─ main.jsx
 ├─ index.css
 └─ App.css
-'''
+```
 **Usage**
 
 -Browse Movies – See the list of all movies on the homepage.
