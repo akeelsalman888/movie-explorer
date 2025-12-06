@@ -30,12 +30,12 @@ export default function Profile() {
                             <Card.Body className="p-4">
                                 {/* Name and bio */}
                                 <h3 className="fw-bold text-warning">Akeel Salman</h3>
-                                <p className="fst-italic text-light">
+                                <p className="fst-italic fs-4 text-light">
                                     Movie enthusiast exploring new films every week.
                                 </p>
 
                                 {/* Basic Info List */}
-                                <ListGroup variant="flush" className="mb-3">
+                                <ListGroup variant="flush" className="mb-3 fs-5">
                                     <ListGroup.Item className="bg-dark text-light border-0">
                                         📧 <strong className="text-warning">Email:</strong> akl_sal@gmail.com
                                     </ListGroup.Item>
@@ -53,8 +53,8 @@ export default function Profile() {
 
                 {/* Favorites Movies Card */}
                 <Card className="bg-dark text-light shadow-lg border-0 mb-3 p-3">
-                    <strong className="text-warning mb-2 d-block">Favorites:</strong>
-                    <ul className="mb-0 ps-3">
+                    <strong className="text-warning mb-2 d-block fs-4">Favorites:</strong>
+                    <ul className="mb-0 ps-3 fs-5">
                         <li>Inception</li>
                         <li>The Dark Knight</li>
                         <li>Interstellar</li>
@@ -63,8 +63,8 @@ export default function Profile() {
 
                 {/* Favorite Actors Card */}
                 <Card className="bg-dark text-light shadow-lg border-0 mb-3 p-3">
-                    <strong className="text-warning mb-2 d-block">Favorite Actors:</strong>
-                    <ul className="mb-0 ps-3">
+                    <strong className="text-warning mb-2 d-block fs-4">Favorite Actors:</strong>
+                    <ul className="mb-0 ps-3 fs-5">
                         <li>Leonardo DiCaprio</li>
                         <li>Scarlett Johansson</li>
                         <li>Denzel Washington</li>
@@ -72,7 +72,7 @@ export default function Profile() {
                 </Card>
 
                 {/* Activity Stats Card */}
-                <Card className="bg-dark text-light shadow-lg border-0 mb-3 p-3">
+                <Card className="bg-dark text-light shadow-lg border-0 mb-3 p-3 fs-4">
                     <strong className="text-warning mb-2 d-block">Activity Stats:</strong>
                     <ul className="mb-0 ps-3">
                         <li>⭐ Movies Rated: 32</li>
