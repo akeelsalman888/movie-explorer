@@ -102,6 +102,11 @@ src/
 db.json
 public/
 ```
+
+**Assets**
+All movie images are stored in the `public/images/` folder. 
+These images are used in the movie list, details, and profile pages.
+
 **Usage**
 
 -Browse Movies – See the list of all movies on the homepage.
