@@ -76,7 +76,7 @@ The React app runs on http://localhost:5173
 
  **PROJECT STRUCTURE**
 ```
- src/
+src/
 ├─ components/
 │  ├─ Navbar.jsx
 │  ├─ Footer.jsx
@@ -85,9 +85,10 @@ The React app runs on http://localhost:5173
 │  ├─ FavoriteButton.jsx
 │  ├─ Loader.jsx
 │  ├─ SearchBar.jsx
-│  ├─ EditModal.jsx
-│  └─ ComingSoon.jsx
-│
+│  ├─ Modal.jsx
+│  ├─ ComingSoon.jsx
+│  ├─ ErrorBoundary.jsx
+│  └─ BackButton.jsx
 ├─ pages/
 │  ├─ Home.jsx
 │  ├─ Search.jsx
@@ -95,11 +96,11 @@ The React app runs on http://localhost:5173
 │  ├─ Profile.jsx
 │  ├─ MovieDetails.jsx
 │  └─ EditMovie.jsx
-│
 ├─ App.jsx
 ├─ main.jsx
 ├─ index.css
-└─ App.css
+db.json
+public/
 ```
 **Usage**
 
