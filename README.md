@@ -59,16 +59,16 @@ git clone https://github.com/akeelsalman888/
 cd movie-explorer
 
 2. Install dependencies
-npm install
+```npm install```
 
 3.Start JSON-server
-npm run server
+```npm run server```
 
 The JSON-server runs on http://localhost:3000
  and provides mock APIs for movies and favorites.
 
 4️. Start the Vite React app
-npm run dev
+```npm run dev```
 
 The React app runs on http://localhost:5173
  (default Vite port). Open it in your browser.
