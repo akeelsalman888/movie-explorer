@@ -5,6 +5,7 @@ import MovieList from "../components/MovieList.jsx";
 import Loader from "../components/Loader.jsx";
 import { Container } from "react-bootstrap";
 
+
 const MOVIES_URL = "http://localhost:3000/movies";
 
 export default function Home() {

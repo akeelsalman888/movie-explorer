@@ -226,11 +226,5 @@
       ]
     }
   ],
-  "favorites": [
-    {
-      "id": "f533",
-      "movieId": "4",
-      "note": "Loved it!"
-    }
-  ]
+  "favorites": []
 }

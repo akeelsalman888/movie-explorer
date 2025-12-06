@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FavoriteButton from "../components/FavoriteButton.jsx";
 import Loader from "../components/Loader.jsx";
+import BackButton from "../components/BackButton.jsx"; // ✅ import BackButton
 
 const MOVIES_URL = "http://localhost:3000/movies"; // Local API only
 
@@ -11,7 +12,7 @@ export default function MovieDetails() {
   const { id } = useParams(); // Get movie ID from URL
   const [movie, setMovie] = useState(null); // Store movie details
 
-  // Fetch movie details on mount or when ID changes
+  // Fetch movie details when ID changes
   useEffect(() => {
     fetch(`${MOVIES_URL}/${id}`)
       .then(res => res.json())
@@ -26,6 +27,12 @@ export default function MovieDetails() {
     <div className="homepage">
       <div className="overlay">
         <div className="container py-5">
+
+          {/* Back button at the top */}
+          <div className="mb-4">
+            <BackButton />
+          </div>
+
           <div className="row justify-content-center">
             <div className="col-md-8 text-light">
               {/* Movie title */}
