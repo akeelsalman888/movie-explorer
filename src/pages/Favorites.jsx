@@ -5,34 +5,29 @@ import { Card, Button, Container } from "react-bootstrap";
 import EditModal from "../components/Modal.jsx";
 import Loader from "../components/Loader.jsx";
 
-const MOVIES_URL = "http://localhost:3000/movies";
-const FAVORITES_URL = "http://localhost:3000/favorites";
+// Fetch URLs: localhost for dev, /db.json for production (Vercel)
+const DATA_URL =
+    import.meta.env.MODE === "production" ? "/public/db.json" : "http://localhost:3000/movies";
 
 export default function Favorites() {
-    const [favorites, setFavorites] = useState([]); // User's favorite entries
-    const [movies, setMovies] = useState([]);       // All movies
-    const [loading, setLoading] = useState(true);   // Loading state
-    const [error, setError] = useState(null);       // Error state
+    const [favorites, setFavorites] = useState([]);
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [showModal, setShowModal] = useState(false); // Controls EditModal visibility
-    const [activeFavId, setActiveFavId] = useState(null); // Currently editing favorite ID
+    const [showModal, setShowModal] = useState(false);
+    const [activeFavId, setActiveFavId] = useState(null);
 
-    // Load movies and favorites from server on mount
     useEffect(() => {
         const loadData = async () => {
             try {
-                const [moviesRes, favRes] = await Promise.all([
-                    fetch(MOVIES_URL),
-                    fetch(FAVORITES_URL),
-                ]);
-                if (!moviesRes.ok || !favRes.ok) throw new Error("Failed to fetch data");
+                const res = await fetch(DATA_URL);
+                if (!res.ok) throw new Error("Failed to fetch data");
+                const data = await res.json();
 
-                const [moviesData, favData] = await Promise.all([
-                    moviesRes.json(),
-                    favRes.json(),
-                ]);
-                setMovies(moviesData);
-                setFavorites(favData);
+                // Vercel db.json should have movies and favorites keys
+                setMovies(data.movies || []);
+                setFavorites(data.favorites || []);
             } catch (err) {
                 console.error(err);
                 setError("Could not load favorites. Please try again later.");
@@ -43,62 +38,35 @@ export default function Favorites() {
         loadData();
     }, []);
 
-    // Helper to get movie details by ID
     const getMovieById = (id) => movies.find((m) => String(m.id) === String(id));
 
-    // Remove a favorite from server and state
-    const deleteFavorite = async (id) => {
-        try {
-            await fetch(`${FAVORITES_URL}/${id}`, { method: "DELETE" });
-            setFavorites(favorites.filter((f) => f.id !== id));
-        } catch (err) {
-            console.error(err);
-            setError("Failed to delete favorite.");
-        }
+    const deleteFavorite = (id) => {
+        setFavorites(favorites.filter((f) => f.id !== id));
     };
 
-    // Open the edit modal for a specific favorite
     const openEdit = (favId) => {
         setActiveFavId(favId);
         setShowModal(true);
     };
 
-    // Save updated note to server and update state
-    const handleSaveNote = async (newNote) => {
+    const handleSaveNote = (newNote) => {
         if (!activeFavId) return;
-        try {
-            await fetch(`${FAVORITES_URL}/${activeFavId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ note: newNote }),
-            });
-            setFavorites(favorites.map(f =>
-                f.id === activeFavId ? { ...f, note: newNote } : f
-            ));
-        } catch (err) {
-            console.error(err);
-            setError("Failed to update note.");
-        } finally {
-            setShowModal(false);
-            setActiveFavId(null);
-        }
+        setFavorites(
+            favorites.map((f) => (f.id === activeFavId ? { ...f, note: newNote } : f))
+        );
+        setShowModal(false);
+        setActiveFavId(null);
     };
 
-    // Show loader while fetching data
     if (loading) return <Loader />;
-
-    // Show error message if something went wrong
     if (error) return <p className="text-danger text-center">{error}</p>;
 
     return (
         <div className="homepage">
             <div className="overlay" style={{ minHeight: "100vh" }}>
                 <Container className="py-5">
-
-                    {/* Page title */}
                     <h1 className="text-center text-warning mb-5 fw-bold">❤️ My Favorites</h1>
 
-                    {/* Show message if no favorites */}
                     {favorites.length === 0 ? (
                         <div
                             style={{
@@ -123,7 +91,6 @@ export default function Favorites() {
                             </p>
                         </div>
                     ) : (
-                        // Display favorite movies
                         <div className="row">
                             {favorites.map((fav) => {
                                 const movie = getMovieById(fav.movieId);
@@ -131,32 +98,26 @@ export default function Favorites() {
                                 return (
                                     <div key={fav.id} className="col-md-3 mb-4">
                                         <Card className="shadow-lg h-100 border-0">
-                                            {/* Movie poster */}
                                             <Card.Img
                                                 variant="top"
                                                 src={movie?.poster || placeholder}
                                                 style={{ height: "350px", objectFit: "cover" }}
                                             />
-
                                             <Card.Body className="d-flex flex-column">
-                                                {/* Movie title */}
                                                 <Card.Title className="fw-bold">
                                                     {movie ? movie.title : "Unknown Movie"}
                                                 </Card.Title>
-
-                                                {/* User note */}
                                                 <Card.Text className="text-muted">
                                                     <strong>Note:</strong> {fav.note || "No note yet."}
                                                 </Card.Text>
-
-                                                {/* Remove favorite button */}
                                                 <div className="d-flex gap-2 mt-auto">
                                                     <Button
                                                         variant="danger"
                                                         className="flex-fill"
                                                         onClick={() => {
                                                             const ok = window.confirm(
-                                                                `Are you sure you want to remove "${movie?.title || "this movie"}" from favorites?`
+                                                                `Are you sure you want to remove "${movie?.title || "this movie"
+                                                                }" from favorites?`
                                                             );
                                                             if (ok) deleteFavorite(fav.id);
                                                         }}
@@ -172,7 +133,6 @@ export default function Favorites() {
                         </div>
                     )}
 
-                    {/* Edit note modal */}
                     <EditModal
                         show={showModal}
                         handleClose={() => setShowModal(false)}
