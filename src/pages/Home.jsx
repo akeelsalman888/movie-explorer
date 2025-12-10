@@ -5,8 +5,11 @@ import MovieList from "../components/MovieList.jsx";
 import Loader from "../components/Loader.jsx";
 import { Container } from "react-bootstrap";
 
-
-const MOVIES_URL = "http://localhost:3000/movies";
+// Use localhost for development, /db.json for production (Vercel)
+const MOVIES_URL =
+    process.env.NODE_ENV === "production"
+        ? "/db.json"
+        : "http://localhost:3000/movies";
 
 export default function Home() {
     const [movies, setMovies] = useState([]); // List of all movies
