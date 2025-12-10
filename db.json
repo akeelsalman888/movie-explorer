@@ -226,5 +226,11 @@
       ]
     }
   ],
-  "favorites": []
+  "favorites": [
+    {
+      "id": "84bf",
+      "movieId": "4",
+      "note": "Loved it!"
+    }
+  ]
 }
