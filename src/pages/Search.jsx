@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar.jsx";
 import MovieList from "../components/MovieList.jsx";
 import { Container } from "react-bootstrap";
 
-const MOVIES_URL = "http://localhost:3000/movies";
+const MOVIES_URL = import.meta.env.MODE === "production" ? "/public/db.json" : "http://localhost:3000/movies";
 
 export default function Search() {
     const [query, setQuery] = useState(""); // Search input

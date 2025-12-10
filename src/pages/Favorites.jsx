@@ -7,7 +7,7 @@ import Loader from "../components/Loader.jsx";
 
 // Fetch URLs: localhost for dev, /db.json for production (Vercel)
 const DATA_URL =
-    import.meta.env.MODE === "production" ? "/public/db.json" : "http://localhost:3000/movies";
+    import.meta.env.MODE === "production" ? "/db.json" : "http://localhost:3000/movies";
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
