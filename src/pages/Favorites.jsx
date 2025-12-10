@@ -5,9 +5,11 @@ import { Card, Button, Container } from "react-bootstrap";
 import EditModal from "../components/Modal.jsx";
 import Loader from "../components/Loader.jsx";
 
-// Fetch URLs: localhost for dev, /db.json for production (Vercel)
+// Fetch from static JSON in prod, localhost in dev
 const DATA_URL =
-    import.meta.env.MODE === "production" ? "/db.json" : "http://localhost:3000/movies";
+    import.meta.env.MODE === "production"
+        ? "/db.json"
+        : "http://localhost:3000/movies";
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
@@ -25,7 +27,6 @@ export default function Favorites() {
                 if (!res.ok) throw new Error("Failed to fetch data");
                 const data = await res.json();
 
-                // Vercel db.json should have movies and favorites keys
                 setMovies(data.movies || []);
                 setFavorites(data.favorites || []);
             } catch (err) {
@@ -40,9 +41,7 @@ export default function Favorites() {
 
     const getMovieById = (id) => movies.find((m) => String(m.id) === String(id));
 
-    const deleteFavorite = (id) => {
-        setFavorites(favorites.filter((f) => f.id !== id));
-    };
+    const deleteFavorite = (id) => setFavorites(favorites.filter((f) => f.id !== id));
 
     const openEdit = (favId) => {
         setActiveFavId(favId);
@@ -115,11 +114,12 @@ export default function Favorites() {
                                                         variant="danger"
                                                         className="flex-fill"
                                                         onClick={() => {
-                                                            const ok = window.confirm(
-                                                                `Are you sure you want to remove "${movie?.title || "this movie"
-                                                                }" from favorites?`
-                                                            );
-                                                            if (ok) deleteFavorite(fav.id);
+                                                            if (
+                                                                window.confirm(
+                                                                    `Remove "${movie?.title || "this movie"}"?`
+                                                                )
+                                                            )
+                                                                deleteFavorite(fav.id);
                                                         }}
                                                     >
                                                         ❌ Remove from favorites
