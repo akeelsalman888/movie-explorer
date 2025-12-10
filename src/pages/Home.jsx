@@ -7,9 +7,9 @@ import { Container } from "react-bootstrap";
 
 // Use localhost for development, /db.json for production (Vercel)
 const MOVIES_URL =
-    process.env.NODE_ENV === "production"
-        ? "/db.json"
-        : "http://localhost:3000/movies";
+    import.meta.env.MODE === "production"
+        ? "/db.json"   // Vercel serves db.json from public
+        : "http://localhost:3000/movies"; // local dev server
 
 export default function Home() {
     const [movies, setMovies] = useState([]); // List of all movies
